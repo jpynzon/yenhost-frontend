@@ -40,6 +40,7 @@ import { goToLoginPage, goToRegisterPage } from '@/utils.js';
 
 const offers = [
     { title: 'Free Domain', icon: 'mdi-check' },
+    { title: 'Free SSL', icon: 'mdi-check' },
     { title: 'Website Builder', icon: 'mdi-check' },
     { title: 'Personalized Email', icon: 'mdi-check' },
     { title: '24/7 Customer Support', icon: 'mdi-check' }
