@@ -12,7 +12,9 @@
                             <span class="me-2">
                                 <v-icon>{{ feature.icon }}</v-icon>
                             </span>
-                            <p class="text-body-2">{{ feature.text }}</p>
+                            <p class="text-body-2" :class="{ 'cursor-pointer text-primary': feature.link }"
+                                @click="goToFeature(feature.link)">{{
+                                    feature.text }}</p>
                         </div>
                     </v-col>
 
@@ -55,6 +57,12 @@ const props = defineProps({
     backgroundImage: String,
     backgroundCss: String,
 });
+
+const goToFeature = (link) => {
+    if (link) {
+        window.open(link, '_blank');
+    }
+};
 </script>
 
 <style scoped>

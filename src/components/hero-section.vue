@@ -14,8 +14,8 @@
                     </p>
                 </div>
                 <div class="action-buttons">
-                    <v-btn @click="goToRegisterPage" class="px-10 w-100" height="50px" color="primary"
-                        rounded="lg">Claim deal</v-btn>
+                    <v-btn href="https://billing.yenhost.com/order?product=2" class="px-10 w-100" height="50px"
+                        color="primary" rounded="lg">Claim deal</v-btn>
                     <!-- <v-btn class="me-3 px-10" height="50px" color="primary" rounded="lg">Claim deal</v-btn>
                     <v-btn class="me-3 px-5" height="50px" color="primary" variant="tonal" rounded="lg">
                         {{ formattedTime }}

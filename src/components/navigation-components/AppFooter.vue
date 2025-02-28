@@ -26,20 +26,10 @@
                     <p class="text-body-2 mb-3">
                         <v-icon class="me-2">mdi-email</v-icon> support@yenhost.com
                     </p>
-                    <p class="text-body-2 mb-3">
-                        <v-icon class="me-2">mdi-phone</v-icon> +123 456 7890
+                    <p class="text-body-2 mb-3 cursor-pointer"
+                        @click="goToFacebook('https://facebook.com/yenhostofficial')">
+                        <v-icon class="me-2">mdi-facebook</v-icon> Facebook
                     </p>
-                    <div class="d-flex mt-2">
-                        <v-btn icon class="me-2" href="#" target="_blank">
-                            <v-icon>mdi-facebook</v-icon>
-                        </v-btn>
-                        <v-btn icon class="me-2" href="#" target="_blank">
-                            <v-icon>mdi-twitter</v-icon>
-                        </v-btn>
-                        <v-btn icon href="#" target="_blank">
-                            <v-icon>mdi-linkedin</v-icon>
-                        </v-btn>
-                    </div>
                 </v-col>
             </v-row>
 
@@ -65,4 +55,10 @@ const footerLinks = [
     { title: 'Pricing', link: '/pricing' },
     { title: 'Contact', link: '/contact' },
 ];
+
+const goToFacebook = (link) => {
+    if (link) {
+        window.open(link, '_blank');
+    }
+};
 </script>
