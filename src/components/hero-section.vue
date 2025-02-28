@@ -25,9 +25,7 @@
 
             <v-col cols="12" md="8">
                 <v-card height="100%" width="100%" variant="text">
-                    <v-img
-                        src="https://imagedelivery.net/LqiWLm-3MGbYHtFuUbcBtA/189d259c-f35e-4849-da0b-dc9a73374300/w=1760,sharpen=1"
-                        height="100%" width="100%" cover />
+                    <v-img :src="heroImage" height="100%" width="100%" cover />
                 </v-card>
             </v-col>
         </v-row>
@@ -36,6 +34,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import heroImage from '@/assets/images/hero-image.png';
 import { goToLoginPage, goToRegisterPage } from '@/utils.js';
 
 const offers = [

@@ -49,8 +49,19 @@
                             <h1 class="text-subtitle-2">{{ plan.subtitle }}</h1>
                         </div>
 
+                        <div v-if="isYearly" class="d-flex align-center mb-5">
+                            <v-chip class="me-3">
+                                <v-icon>mdi-percent</v-icon>
+                                15 off
+                            </v-chip>
+                            <h1 class="text-subtitle-1 dashed-price">
+                                <span>{{ selectedCurrency.symbol }}</span>
+                                {{ convertPrice(plan.price * (isYearly ? 1 / 0.85 : 1)) }}
+                            </h1>
+                        </div>
+
                         <div class="price mb-5">
-                            <h1 class="text-h3 font-weight-bold">
+                            <h1 class="text-h3 font-weight-bold mb-3">
                                 <span class="text-h6">{{ selectedCurrency.symbol }}</span>
                                 {{ convertPrice(plan.price) }}
                                 <span class="text-h6">/{{ isYearly ? 'yr' : 'mo' }}</span>
@@ -86,13 +97,11 @@ const pricings = [
         price: 171,
         features: [
             '10 GB SSD Storage',
-            'Unlimited Websites',
-            'Unlimited Email & DB',
-            'Unmetered Bandwidth',
-            'Imunify 360 Security Protection',
-            'Free Automated Backups',
-            'Free 1-Click Auto Installer',
-            'Free Domain Name']
+            '3 Websites',
+            '100GB Bandwidth',
+            '30 Mailboxes',
+            'Website Builder',
+            'Free SSL']
     },
     {
         mostPopular: true,
@@ -100,14 +109,12 @@ const pricings = [
         subtitle: 'Ideal for personal website',
         price: 316,
         features: [
-            '50 GB SSD Storage',
+            '20 GB SSD Storage',
             'Unlimited Websites',
-            'Unlimited Email & DB',
+            'Unlimited Mailboxes',
             'Unmetered Bandwidth',
-            'Imunify 360 Security Protection',
-            'Free Automated Backups',
-            'Free 1-Click Auto Installer',
-            'Free Domain Name']
+            'Website Builder',
+            'Free SSL']
     },
     {
         mostPopular: false,
@@ -115,22 +122,20 @@ const pricings = [
         subtitle: 'For businesses with high traffic',
         price: 578,
         features: [
-            '100 GB SSD Storage',
+            '50 GB SSD Storage',
             'Unlimited Websites',
-            'Unlimited Email & DB',
+            'Unlimited Mailboxes',
             'Unmetered Bandwidth',
-            'Imunify 360 Security Protection',
-            'Free Automated Backups',
-            'Free 1-Click Auto Installer',
-            'Free Domain Name']
+            'Webiste Builder',
+            'Free Domain Name',
+            'Free SSL']
     }
 ];
 
 // Currency options
 const currencies = [
     { title: 'Philippines (₱)', symbol: '₱', rate: 1 },
-    { title: 'United States ($)', symbol: 'US$', rate: 1 / 53 },
-    { title: 'Euro (€)', symbol: '€', rate: 1 / 58 },
+    { title: 'United States ($)', symbol: 'US$', rate: 1 / 50 },
 ];
 
 const isYearly = ref(false);
@@ -152,20 +157,38 @@ const changeCurrency = (currency) => {
 
 // Compute the displayed prices
 const displayedPricings = computed(() => {
-    return pricings.map(plan => ({
-        ...plan,
-        price: isYearly.value ? plan.price * 12 * 0.85 : plan.price // 15% discount on yearly plans
-    }));
+    return pricings.map(plan => {
+        let updatedFeatures = [...plan.features];
+
+        // Add "Free Domain Name" to ALL yearly plans (if not already included)
+        if (isYearly.value && !updatedFeatures.includes('Free 1 Year Domain')) {
+            updatedFeatures.push('Free 1 Year Domain');
+        }
+
+        return {
+            ...plan,
+            features: updatedFeatures,
+            price: isYearly.value ? plan.price * 12 * 0.85 : plan.price // 15% discount on yearly
+        };
+    });
 });
 
-// Convert price based on currency
+
+// Convert price based on currency and add commas
 const convertPrice = (price) => {
-    return (price * selectedCurrency.value.rate).toFixed(2);
+    return (price * selectedCurrency.value.rate)
+        .toFixed(2)
+        .replace(/\d(?=(\d{3})+\.)/g, '$&,'); // Add commas
 };
+
 </script>
 
 <style scoped>
 .cursor-pointer {
     cursor: pointer;
+}
+
+.dashed-price {
+    text-decoration: line-through;
 }
 </style>
