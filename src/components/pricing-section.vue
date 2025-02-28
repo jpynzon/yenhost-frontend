@@ -127,7 +127,6 @@ const pricings = [
             'Unlimited Mailboxes',
             'Unmetered Bandwidth',
             'Webiste Builder',
-            'Free Domain Name',
             'Free SSL']
     }
 ];
@@ -161,7 +160,7 @@ const displayedPricings = computed(() => {
         let updatedFeatures = [...plan.features];
 
         // Add "Free Domain Name" to ALL yearly plans (if not already included)
-        if (isYearly.value && !updatedFeatures.includes('Free 1 Year Domain')) {
+        if (isYearly.value && plan.title !== 'Starter' && !updatedFeatures.includes('Free 1 Year Domain')) {
             updatedFeatures.push('Free 1 Year Domain');
         }
 
