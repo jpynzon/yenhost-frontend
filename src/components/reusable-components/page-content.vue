@@ -16,6 +16,10 @@
                                 @click="goToFeature(feature.link)">{{
                                     feature.text }}</p>
                         </div>
+
+                        <v-btn v-if="actionButtonLabel" color="primary" class="mt-5" height="50px" rounded="lg"
+                            :href="actionButtonLink">{{
+                                actionButtonLabel }}</v-btn>
                     </v-col>
 
                     <v-col cols="12" md="6">
@@ -56,6 +60,8 @@ const props = defineProps({
     image: String,
     backgroundImage: String,
     backgroundCss: String,
+    actionButtonLabel: String,
+    actionButtonLink: String
 });
 
 const goToFeature = (link) => {

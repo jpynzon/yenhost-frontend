@@ -9,7 +9,8 @@
             'A domain name is your digital identity. Our hassle-free registration process ensures you get the perfect name for your website, blog, or business.',
             'Enjoy competitive pricing, domain privacy protection, and seamless integration with our hosting solutions.',
             'Take the first step in establishing your online brand today!'
-        ]" :image="domainImage" :backgroundImage="domainPreview" />
+        ]" :image="domainImage" :backgroundImage="domainPreview" actionButtonLabel="Search Domain"
+        actionButtonLink="https://billing.yenhost.com/order?product=1" />
 </template>
 
 <script setup>
