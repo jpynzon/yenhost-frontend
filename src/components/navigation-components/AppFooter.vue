@@ -14,7 +14,7 @@
                 <v-col cols="12" md="4">
                     <h3 class="text-h6 font-weight-bold mb-3">Quick Links</h3>
                     <v-list density="compact" class="bg-transparent">
-                        <v-list-item v-for="item in footerLinks" :key="item.title" :to="item.link">
+                        <v-list-item v-for="item in footerLinks" :key="item.title" :to="item.href ? undefined : item.link" @click="handleClick(item)">
                             <v-list-item-title>{{ item.title }}</v-list-item-title>
                         </v-list-item>
                     </v-list>
@@ -49,16 +49,22 @@
 import mainLogo from '@/assets/logo.png';
 
 const footerLinks = [
-    { title: 'cPanel Hosting', link: '/hosting/cpanel' },
-    { title: 'WordPress Hosting', link: '/hosting/wordpress' },
-    { title: 'Domains', link: '/domain/registration' },
-    { title: 'Pricing', link: '/pricing' },
-    { title: 'Contact', link: '/contact' },
+    { title: 'Shared Hosting', href: 'https://my.yenhost.com/order.php?step=1&productGroup=1' },
+    // { title: 'WordPress Hosting', link: '/hosting/wordpress' },
+    { title: 'Domains', href: 'https://my.yenhost.com/order.php?step=1&productGroup=2' },
+    // { title: 'Pricing', link: '/pricing' },
+    // { title: 'Contact', link: '/contact' },
 ];
 
 const goToFacebook = (link) => {
     if (link) {
         window.open(link, '_blank');
+    }
+};
+
+const handleClick = (item) => {
+    if (item.href) {
+        window.location.href = item.href;
     }
 };
 </script>

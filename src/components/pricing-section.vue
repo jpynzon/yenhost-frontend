@@ -83,11 +83,11 @@ import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
 
 const isYearly = ref(false);
-const selectedCurrency = ref({ title: 'Philippines', symbol: '₱', rate: 1 });
+const selectedCurrency = ref({ title: 'USD', symbol: '$', rate: 0.01755 });
 
 const currencies = ref([
+    { title: 'USD', symbol: '$', rate: 0.01755 },
     { title: 'Philippines', symbol: '₱', rate: 1 },
-    { title: 'USD', symbol: '$', rate: 0.01724 }
 ]);
 
 // Fetch USD rate dynamically
@@ -166,7 +166,7 @@ const pricings = [
         subtitle: 'Perfect for a single website',
         price: 171,
         features: ['10 GB SSD Storage', '3 Websites', '100GB Bandwidth', '30 Mailboxes', 'Website Builder', 'Free SSL'],
-        link: 'https://billing.yenhost.com/order?product=2'
+        link: 'https://my.yenhost.com/order.php?step=2&product=1&paymentTerm=1'
     },
     {
         mostPopular: true,
@@ -174,7 +174,7 @@ const pricings = [
         subtitle: 'Ideal for personal website',
         price: 316,
         features: ['20 GB SSD Storage', 'Unlimited Websites', 'Unlimited Mailboxes', 'Unmetered Bandwidth', 'Website Builder', 'Free SSL'],
-        link: 'https://billing.yenhost.com/order?product=3'
+        link: 'https://my.yenhost.com/order.php?step=2&product=5&paymentTerm=1'
     },
     {
         mostPopular: false,
@@ -182,7 +182,7 @@ const pricings = [
         subtitle: 'For businesses with high traffic',
         price: 578,
         features: ['50 GB SSD Storage', 'Unlimited Websites', 'Unlimited Mailboxes', 'Unmetered Bandwidth', 'Website Builder', 'Free SSL'],
-        link: 'https://billing.yenhost.com/order?product=4'
+        link: 'https://my.yenhost.com/order.php?step=2&product=2&paymentTerm=1'
     }
 ];
 

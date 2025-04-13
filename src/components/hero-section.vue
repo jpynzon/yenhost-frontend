@@ -14,7 +14,7 @@
                     </p>
                 </div>
                 <div class="action-buttons">
-                    <v-btn href="https://billing.yenhost.com/order?product=2" class="px-10 w-100" height="50px"
+                    <v-btn :href="claimDealLink" class="px-10 w-100" height="50px"
                         color="primary" rounded="lg">Claim deal</v-btn>
                     <!-- <v-btn class="me-3 px-10" height="50px" color="primary" rounded="lg">Claim deal</v-btn>
                     <v-btn class="me-3 px-5" height="50px" color="primary" variant="tonal" rounded="lg">
@@ -36,6 +36,8 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import heroImage from '@/assets/images/hero-image.png';
 import { goToLoginPage, goToRegisterPage } from '@/utils.js';
+
+const claimDealLink = 'https://my.yenhost.com/order.php?step=2&product=2&paymentterm=12&couponCode=firstyear';
 
 const offers = [
     { title: 'Free Domain', icon: 'mdi-check' },

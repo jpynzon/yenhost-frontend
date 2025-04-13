@@ -16,9 +16,10 @@
                             </v-btn>
                         </template>
                         <v-list class="rounded-lg">
-                            <v-list-item v-for="submenu in item.menu" :key="submenu.title" :to="submenu.link">
-                                <v-list-item-title class="text-primary">{{ submenu.title }}</v-list-item-title>
-                            </v-list-item>
+                            <v-list-item v-for="submenu in item.menu" :key="submenu.title" class="text-primary"
+                            :to="submenu.href ? undefined : submenu.link" @click="handleClick(submenu)">
+                            <v-list-item-title>{{ submenu.title }}</v-list-item-title>
+                        </v-list-item>
                         </v-list>
                     </v-menu>
 
@@ -48,7 +49,8 @@
                                 <v-list-item-title>{{ item.title }}</v-list-item-title>
                             </v-list-item>
                         </template>
-                        <v-list-item v-for="submenu in item.menu" :key="submenu.title" :to="submenu.link">
+                        <v-list-item v-for="submenu in item.menu" :key="submenu.title"
+                            :to="submenu.href ? undefined : submenu.link" @click="handleClick(submenu)">
                             <v-list-item-title>{{ submenu.title }}</v-list-item-title>
                         </v-list-item>
                     </v-list-group>
@@ -84,19 +86,25 @@ const navLink = [
     {
         title: 'Hosting', link: '/', menuType: true,
         menu: [
-            { title: 'cPanel Hosting', link: '/hosting/cpanel' },
-            { title: 'WordPress Hosting', link: '/hosting/wordpress' },
-            { title: 'Professional Email', link: '/professional-email' },
+            { title: 'Shared Hosting', href: 'https://my.yenhost.com/order.php?step=1&productGroup=1' },
+            /* { title: 'WordPress Hosting', link: '/hosting/wordpress' }, */
+            /* { title: 'Professional Email', link: '/professional-email' }, */
         ]
     },
     {
         title: 'Domain', link: '/', menuType: true,
         menu: [
-            { title: 'Domain Registration', link: '/domain/registration' },
+            { title: 'Domain Registration', link: null, href: 'https://my.yenhost.com/order.php?step=1&productGroup=2' },
             // { title: 'Domain Transfer', link: '/domain/transfer' },
         ]
     },
-    { title: 'Pricing', link: '/pricing', menuType: false },
-    { title: 'Contact', link: '/contact', menuType: false },
+    // { title: 'Pricing', link: '/pricing', menuType: false },
+    // { title: 'Contact', link: '/contact', menuType: false },
 ];
+
+const handleClick = (submenu) => {
+    if (submenu.href) {
+        window.location.href = submenu.href;
+    }
+};
 </script>
